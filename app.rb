@@ -22,6 +22,21 @@ end
 get '/posts' do
   erb :index
 end
+
 get '/new' do
-  erb :index
+  @post = Post.new
+
+  erb :new
+end
+
+post '/new' do
+  @post = Post.new params[:post]
+
+  if @post.save
+    erb :index
+  else
+    @error = @c.errors.full_messages.first
+    erb :new
+  end
+
 end
