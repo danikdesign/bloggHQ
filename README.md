@@ -1,4 +1,4 @@
-sinatra-bootstrap-clean
+BloGG
 =======================
 
-Cleaned version of https://github.com/bootstrap-ruby/sinatra-bootstrap
+BloGG 2.0 with ActiveRecord
