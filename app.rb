@@ -12,14 +12,10 @@ class Comment < ActiveRecord::Base
 end
 
 before do
-  @results = Post.order 'created_at DESC'
+  @posts = Post.order 'created_at DESC'
 end
 
 get '/' do
-  erb :index
-end
-
-get '/posts' do
   erb :index
 end
 
@@ -39,4 +35,12 @@ post '/new' do
     erb :new
   end
 
+end
+
+get '/details/:id' do
+
+  @details = Post.find params[:id]
+  #@comments = @db.execute 'select * from Comments where post_id = ? order by id', [post_id]
+
+  erb :details
 end
