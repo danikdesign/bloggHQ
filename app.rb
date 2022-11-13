@@ -6,13 +6,18 @@ require 'sinatra/activerecord'
 set :database, {adapter: "sqlite3", database: "blogg.db"}
 
 class Post < ActiveRecord::Base
+  validates :author, presence: true
+  validates :content, presence: true
 end
 
 class Comment < ActiveRecord::Base
+  validates :author, presence: true
+  validates :content, presence: true
 end
 
 before do
   @posts = Post.order 'created_at DESC'
+
 end
 
 get '/' do
@@ -31,16 +36,33 @@ post '/new' do
   if @post.save
     erb :index
   else
-    @error = @c.errors.full_messages.first
+    @error = @post.errors.full_messages.first
     erb :new
   end
 
 end
 
-get '/details/:id' do
-
-  @details = Post.find params[:id]
-  #@comments = @db.execute 'select * from Comments where post_id = ? order by id', [post_id]
-
+get '/details/:post_id' do
+  @comment = Comment.new
+  @details = Post.find params[:post_id]
+  @comments = Comment.where post_id: params[:post_id]
   erb :details
+end
+
+post '/details/:post_id' do
+
+  post_id = params[:post_id]
+  @comment = Comment.new params[:comment]
+  @comment.post_id = params[:post_id]
+
+  if @comment.save
+    redirect to('/details/' + post_id)
+  else
+    @error = @comment.errors.full_messages.first
+    @details = Post.find params[:post_id]
+    @comments = Comment.where post_id: params[:post_id]
+
+    erb :details
+  end
+
 end
