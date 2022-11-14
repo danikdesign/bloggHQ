@@ -9,9 +9,9 @@
           <strong class="d-inline-block mb-2 text-primary">Author: <%= post.author %></strong>
           <h3 class="mb-0"><%= post.subject %></h3>
           <div class="mb-1 text-muted"><%= post.created_at.strftime('%b %d') %></div>
-          <p class="card-text mb-auto"><%= post.content %></p>
+          <p class="card-text mb-auto"><%= post.content[0..300] %>...</p>
         </div>
-        <a class="btn btn-light" href="/details/<%= post.id %>" style="--bs-btn-border-radius: 0rem;">Comments</a>
+        <a class="btn btn-light" href="/details/<%= post.id %>" style="--bs-btn-border-radius: 0rem;">Details</a>
       </div>
     </div>
   <% end %>
