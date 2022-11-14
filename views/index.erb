@@ -1,19 +1,19 @@
-<h2>Latest posts:</h2>
-<br>
-<% @posts.each do |post| %>
-  <p>
-    <small>Author: <%= post.author %></small>
-    <br />
-    <br />
-    <%= post.content%>
-    <br />
-    <br />
-    <small>Added at <%= post.created_at %></small>
-    <br />
-    <br />
-    <a href="/details/<%= post.id %>">Comments</a>
-  </p>
-  <hr />
-<% end %>
+<div>
+  <h5>Latest posts:</h5>
+</div>
+<div class="row row-cols-1 row-cols-md-2 g-4">
+  <% @posts.each do |post| %>
+    <div class="col md-6">
+      <div class="row g-0 border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 position-relative">
+        <div class="col p-4 d-flex flex-column position-static">
+          <strong class="d-inline-block mb-2 text-primary">Author: <%= post.author %></strong>
+          <h3 class="mb-0"><%= post.subject %></h3>
+          <div class="mb-1 text-muted"><%= post.created_at.strftime('%b %d') %></div>
+          <p class="card-text mb-auto"><%= post.content %></p>
+        </div>
+        <a class="btn btn-light" href="/details/<%= post.id %>" style="--bs-btn-border-radius: 0rem;">Comments</a>
+      </div>
+    </div>
+  <% end %>
 
-
+</div>

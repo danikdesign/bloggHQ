@@ -1,12 +1,18 @@
 <h2>Add new post</h2>
 <form action="/new" method="POST">
-  <div class="form-floating">
-    <textarea name="post[author]" class="form-control" placeholder="Enter your name" id="floatingTextarea" style="height: 35px"><%= @post.author %></textarea>
-    <label for="floatingTextarea">Your name</label>
+  <div class="mb-3">
+    <label for="exampleFormControlInput1" class="form-label">Your name</label>
+    <input name="post[author]" type="text" class="form-control" id="exampleFormControlInput1" placeholder="Enter your name">
   </div>
-  <div class="form-floating">
-    <textarea name="post[content]" class="form-control" placeholder="Leave a post here" id="floatingTextarea" style="height: 200px"><%= @post.content %></textarea>
-    <label for="floatingTextarea">Your post</label>
+  <div class="mb-3">
+    <label for="exampleFormControlInput1" class="form-label">Post subject</label>
+    <input name="post[subject]" type="text" class="form-control" id="exampleFormControlInput1" placeholder="Enter post subject">
   </div>
+  <div class="mb-3">
+    <label for="exampleFormControlTextarea1" class="form-label">Your post</label>
+    <textarea name="post[content]" class="form-control" id="exampleFormControlTextarea1" placeholder="Leave a post here..." rows="3"><%= @post.content %></textarea>
+  </div>
+
   <button type="submit" class="btn btn-primary">Submit</button>
+
 </form>
